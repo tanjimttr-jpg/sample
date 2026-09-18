@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Product Designer & Developer</title>
+<meta name="description" content="Portfolio of Alex Rivera, product designer and front-end developer.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14171C;
+    --paper:#F7F5F0;
+    --paper-dim:#EDEAE2;
+    --accent:#5B7CFA;
+    --accent-dim:#3D57C4;
+    --line: rgba(20,23,28,0.12);
+    --serif: "Fraunces", serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --maxw: 1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:var(--paper);}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0;
+    z-index:100;
+    padding:22px 0;
+    background:rgba(247,245,240,0.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{ border-color:var(--line); }
+
+  nav.wrap{ display:flex; align-items:center; justify-content:space-between; }
+
+  .logo{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+  }
+
+  .navlinks{ display:flex; gap:8px; list-style:none; }
+  .navlinks a{
+    position:relative;
+    text-decoration:none;
+    font-size:0.92rem;
+    font-weight:500;
+    padding:8px 16px;
+    border-radius:100px;
+    display:inline-block;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), color .2s ease;
+  }
+  .navlinks a:hover{ transform:translateY(-2px); color:var(--accent-dim); }
+
+  .navtoggle{ display:none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding-top:90px;
+    isolation:isolate;
+  }
+
+  .blob-field{
+    position:absolute; inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .blob{
+    position:absolute;
+    width:46vw; height:46vw;
+    max-width:620px; max-height:620px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(91,124,250,0.55), rgba(91,124,250,0) 70%);
+    filter:blur(10px);
+    top:8%;
+    right:-8%;
+    transition:transform .35s ease-out;
+    will-change:transform;
+  }
+
+  .kicker{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--accent-dim);
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+    opacity:0;
+    animation:rise .7s .1s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  h1.display{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.6rem, 7vw, 5.4rem);
+    line-height:0.98;
+    letter-spacing:-0.02em;
+    max-width:14ch;
+    opacity:0;
+    animation:rise .8s .22s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  h1.display em{
+    font-style:italic;
+    color:var(--accent-dim);
+    font-weight:500;
+  }
+
+  .hero-sub{
+    margin-top:28px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:#454B54;
+    opacity:0;
+    animation:rise .8s .36s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  .hero-cta{
+    margin-top:40px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:rise .8s .48s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.94rem;
+    text-decoration:none;
+    border:1px solid var(--ink);
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), background .25s ease, color .25s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-3px); background:var(--accent-dim); border-color:var(--accent-dim); }
+  .btn-ghost{ background:transparent; }
+  .btn-ghost:hover{ transform:translateY(-3px); background:var(--ink); color:var(--paper); }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:36px; left:32px;
+    display:flex; align-items:center; gap:10px;
+    font-size:0.78rem;
+    color:#6A7078;
+    font-weight:500;
+  }
+  .scroll-cue .line{
+    width:34px; height:1px; background:#6A7078;
+    position:relative; overflow:hidden;
+  }
+  .scroll-cue .line::after{
+    content:""; position:absolute; left:-100%; top:0; height:100%; width:100%;
+    background:var(--accent);
+    animation:trace 1.8s ease-in-out infinite;
+  }
+  @keyframes trace{
+    0%{ left:-100%; } 50%{ left:0; } 100%{ left:100%; }
+  }
+
+  /* ---------- Section framing ---------- */
+  section{ padding:130px 0; border-top:1px solid var(--line); }
+  .hero{ border-top:none; }
+
+  .eyebrow-row{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:56px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  h2.section-title{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing:-0.01em;
+  }
+  .section-num{
+    font-size:0.85rem;
+    color:#8B9099;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-grid p{ font-size:1.08rem; color:#3A3F46; margin-bottom:18px; max-width:56ch; }
+  .about-grid p:last-child{ margin-bottom:0; }
+
+  .stat-list{ display:flex; flex-direction:column; gap:0; }
+  .stat{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .stat:first-child{ padding-top:0; }
+  .stat-num{ font-family:var(--serif); font-size:2.1rem; font-weight:500; }
+  .stat-label{ font-size:0.9rem; color:#6A7078; text-align:right; max-width:16ch; }
+
+  /* ---------- Work: horizontal rail ---------- */
+  .rail-outer{ margin:0 -32px; padding:0 32px; }
+  .rail{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+    padding-bottom:20px;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;
+    scrollbar-color:var(--ink) transparent;
+  }
+  .rail::-webkit-scrollbar{ height:6px; }
+  .rail::-webkit-scrollbar-thumb{ background:var(--line); border-radius:10px; }
+
+  .card{
+    flex:0 0 auto;
+    width:min(78vw, 380px);
+    scroll-snap-align:start;
+    background:var(--paper-dim);
+    border-radius:18px;
+    padding:28px;
+    display:flex; flex-direction:column; gap:20px;
+    border:1px solid var(--line);
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px -20px rgba(20,23,28,0.35); }
+
+  .card-visual{
+    height:170px;
+    border-radius:12px;
+    background:linear-gradient(135deg, var(--accent), var(--ink));
+    position:relative;
+    overflow:hidden;
+  }
+  .card-visual span{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-style:italic; font-size:1.1rem;
+    color:rgba(247,245,240,0.9);
+  }
+
+  .card h3{ font-family:var(--serif); font-weight:500; font-size:1.3rem; }
+  .card p{ color:#565C64; font-size:0.95rem; }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag{
+    font-size:0.75rem; font-weight:600; color:var(--accent-dim);
+    background:rgba(91,124,250,0.12);
+    padding:5px 11px; border-radius:100px;
+  }
+  .card-link{
+    margin-top:auto;
+    font-size:0.9rem; font-weight:600;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .card-link svg{ transition:transform .25s ease; }
+  .card-link:hover svg{ transform:translate(3px,-3px); }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .skill-cell{
+    background:var(--paper);
+    padding:30px 26px;
+    transition:background .25s ease;
+  }
+  .skill-cell:hover{ background:var(--paper-dim); }
+  .skill-cell h4{ font-family:var(--serif); font-size:1.15rem; font-weight:500; margin-bottom:10px; }
+  .skill-cell p{ font-size:0.9rem; color:#5C626A; }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    display:flex; flex-direction:column; align-items:flex-start; gap:28px;
+  }
+  .contact h2.section-title{ max-width:16ch; }
+  .contact-email{
+    font-family:var(--serif);
+    font-size:clamp(1.6rem, 5vw, 3rem);
+    font-weight:500;
+    text-decoration:none;
+    border-bottom:2px solid var(--accent);
+    padding-bottom:4px;
+    transition:color .25s ease, border-color .25s ease;
+  }
+  .contact-email:hover{ color:var(--accent-dim); }
+
+  .social-row{ display:flex; gap:22px; margin-top:6px; }
+  .social-row a{
+    font-size:0.92rem; font-weight:500; text-decoration:none;
+    color:#5C626A;
+    position:relative;
+  }
+  .social-row a::after{
+    content:""; position:absolute; left:0; bottom:-3px; width:0; height:1px;
+    background:var(--ink); transition:width .25s ease;
+  }
+  .social-row a:hover::after{ width:100%; }
+  .social-row a:hover{ color:var(--ink); }
+
+  footer{
+    padding:30px 0 40px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.82rem; color:#8B9099;
+    flex-wrap:wrap; gap:10px;
+  }
+  .back-top{
+    text-decoration:none; color:#8B9099; font-weight:500;
+    transition:color .2s ease;
+  }
+  .back-top:hover{ color:var(--ink); }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns:1fr; gap:40px; }
+    .skills-grid{ grid-template-columns:1fr 1fr; }
+    .navlinks{ display:none; }
+  }
+  @media (max-width: 520px){
+    .skills-grid{ grid-template-columns:1fr; }
+    section{ padding:90px 0; }
+    .wrap{ padding:0 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <a href="#top" class="logo">Alex Rivera</a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="blob-field"><div class="blob" id="blob"></div></div>
+    <div class="wrap">
+      <p class="kicker">PRODUCT DESIGNER &amp; FRONT-END DEVELOPER</p>
+      <h1 class="display">I build interfaces that feel <em>inevitable</em>.</h1>
+      <p class="hero-sub">Five years turning fuzzy problems into shipped products — spanning design systems, motion, and the code that holds it all together.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn btn-primary">See the work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span class="line"></span> Scroll</div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow-row reveal">
+        <h2 class="section-title">About</h2>
+        <span class="section-num">01</span>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p>I'm a designer-developer hybrid based in Lisbon, working with startups and small teams who need to move fast without breaking the parts that matter — the details a user actually feels.</p>
+          <p>My background spans branding studios, a two-year stint building internal tools at a logistics company, and three years freelancing across fintech and climate-tech products. I care about typography, load times, and interfaces that don't need a tutorial.</p>
+        </div>
+        <div class="stat-list reveal">
+          <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Products shipped</span></div>
+          <div class="stat"><span class="stat-num">12</span><span class="stat-label">Design systems built</span></div>
+          <div class="stat"><span class="stat-num">5 yrs</span><span class="stat-label">Freelance &amp; studio work</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="eyebrow-row reveal">
+        <h2 class="section-title">Selected work</h2>
+        <span class="section-num">02</span>
+      </div>
+    </div>
+    <div class="rail-outer reveal">
+      <div class="rail">
+
+        <article class="card">
+          <div class="card-visual"><span>Fintech</span></div>
+          <h3>Ledger — expense tracking for small teams</h3>
+          <p>Redesigned the core reporting flow, cutting time-to-insight from minutes to seconds.</p>
+          <div class="tag-row"><span class="tag">Product design</span><span class="tag">React</span></div>
+          <a href="#" class="card-link">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        </article>
+
+        <article class="card">
+          <div class="card-visual"><span>Climate</span></div>
+          <h3>Canopy — carbon offset marketplace</h3>
+          <p>Built the design system and front-end from zero to public launch in ten weeks.</p>
+          <div class="tag-row"><span class="tag">Design system</span><span class="tag">Vue</span></div>
+          <a href="#" class="card-link">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        </article>
+
+        <article class="card">
+          <div class="card-visual"><span>Logistics</span></div>
+          <h3>Routeform — internal dispatch console</h3>
+          <p>Simplified a 14-step dispatch workflow into three screens for warehouse staff.</p>
+          <div class="tag-row"><span class="tag">UX research</span><span class="tag">Internal tools</span></div>
+          <a href="#" class="card-link">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        </article>
+
+        <article class="card">
+          <div class="card-visual"><span>Health</span></div>
+          <h3>Mendwell — patient intake portal</h3>
+          <p>Accessible, multi-language intake flow now used across 30 clinics.</p>
+          <div class="tag-row"><span class="tag">Accessibility</span><span class="tag">Svelte</span></div>
+          <a href="#" class="card-link">View case study <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="eyebrow-row reveal">
+        <h2 class="section-title">How I work</h2>
+        <span class="section-num">03</span>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-cell"><h4>Design</h4><p>Figma, design systems, interaction &amp; motion design, accessibility audits.</p></div>
+        <div class="skill-cell"><h4>Front-end</h4><p>React, Vue, Svelte, TypeScript, hand-rolled CSS when it matters.</p></div>
+        <div class="skill-cell"><h4>Research</h4><p>User interviews, usability testing, journey mapping, workshop facilitation.</p></div>
+        <div class="skill-cell"><h4>Prototyping</h4><p>From paper sketches to coded, data-connected prototypes.</p></div>
+        <div class="skill-cell"><h4>Collaboration</h4><p>Comfortable pairing directly with engineers, PMs, and founders.</p></div>
+        <div class="skill-cell"><h4>Writing</h4><p>Product copy, documentation, and the occasional case study.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div class="reveal">
+        <h2 class="section-title">Let's build something worth using.</h2>
+      </div>
+      <a href="mailto:hello@alexrivera.dev" class="contact-email reveal">hello@alexrivera.dev</a>
+      <div class="social-row reveal">
+        <a href="#" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Dribbble</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>&copy; <span id="year"></span> Alex Rivera. Built with HTML, CSS &amp; a little JS.</span>
+  <a href="#top" class="back-top">Back to top ↑</a>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header border on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Cursor-reactive hero blob (desktop only, respects reduced motion)
+  const blob = document.getElementById('blob');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && window.matchMedia('(pointer:fine)').matches) {
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth: w, innerHeight: h } = window;
+      tx = (e.clientX / w - 0.5) * 60;
+      ty = (e.clientY / h - 0.5) * 60;
+    });
+    function animateBlob() {
+      cx += (tx - cx) * 0.06;
+      cy += (ty - cy) * 0.06;
+      blob.style.transform = `translate(${cx}px, ${cy}px)`;
+      requestAnimationFrame(animateBlob);
+    }
+    animateBlob();
+  }
+
+  // Smooth in-page nav (native scroll-behavior already handles most of it)
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
